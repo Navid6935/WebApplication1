@@ -43,6 +43,7 @@ namespace WebApplication1.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetTestTable([FromRoute] int id)
         {
+            
 
             if (!ModelState.IsValid)
             {
