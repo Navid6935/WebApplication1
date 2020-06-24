@@ -32,6 +32,7 @@ namespace WebApplication1
             services.AddDbContext<Smart_Api_DBContext>(options => 
             { options.UseSqlServer("Data Source=192.168.0.58;Initial Catalog=Smart_Api_DB;user = sa;password=69655.6935.;MultipleActiveResultSets=true;"); });
             services.AddTransient<ITestTable, TestTableRepository>();
+            services.AddMemoryCache();
 
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
