@@ -11,56 +11,56 @@ namespace WebApplication1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AppDevicesController : ControllerBase
+    public class MacsController : ControllerBase
     {
         private readonly Smart_Api_DBContext _context;
 
-        public AppDevicesController(Smart_Api_DBContext context)
+        public MacsController(Smart_Api_DBContext context)
         {
             _context = context;
         }
 
-        // GET: api/AppDevices
+        // GET: api/Macs
         [HttpGet]
-        public IEnumerable<AppDevices> GetAppDevices()
+        public IEnumerable<Mac> GetMac()
         {
-            return _context.AppDevices;
+            return _context.Mac;
         }
 
-        // GET: api/AppDevices/5
+        // GET: api/Macs/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetAppDevices([FromRoute] int id)
+        public async Task<IActionResult> GetMac([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var appDevices = await _context.AppDevices.FindAsync(id);
+            var mac = await _context.Mac.FindAsync(id);
 
-            if (appDevices == null)
+            if (mac == null)
             {
                 return NotFound();
             }
 
-            return Ok(appDevices);
+            return Ok(mac);
         }
 
-        // PUT: api/AppDevices/5
+        // PUT: api/Macs/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAppDevices([FromRoute] int id, [FromBody] AppDevices appDevices)
+        public async Task<IActionResult> PutMac([FromRoute] int id, [FromBody] Mac mac)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != appDevices.DeviceId)
+            if (id != mac.MacId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(appDevices).State = EntityState.Modified;
+            _context.Entry(mac).State = EntityState.Modified;
 
             try
             {
@@ -68,7 +68,7 @@ namespace WebApplication1.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AppDevicesExists(id))
+                if (!MacExists(id))
                 {
                     return NotFound();
                 }
@@ -81,45 +81,45 @@ namespace WebApplication1.Controllers
             return NoContent();
         }
 
-        // POST: api/AppDevices
+        // POST: api/Macs
         [HttpPost]
-        public async Task<IActionResult> PostAppDevices([FromBody] AppDevices appDevices)
+        public async Task<IActionResult> PostMac([FromBody] Mac mac)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.AppDevices.Add(appDevices);
+            _context.Mac.Add(mac);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetAppDevices", new { id = appDevices.DeviceId }, appDevices);
+            return CreatedAtAction("GetMac", new { id = mac.MacId }, mac);
         }
 
-        // DELETE: api/AppDevices/5
+        // DELETE: api/Macs/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAppDevices([FromRoute] int id)
+        public async Task<IActionResult> DeleteMac([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var appDevices = await _context.AppDevices.FindAsync(id);
-            if (appDevices == null)
+            var mac = await _context.Mac.FindAsync(id);
+            if (mac == null)
             {
                 return NotFound();
             }
 
-            _context.AppDevices.Remove(appDevices);
+            _context.Mac.Remove(mac);
             await _context.SaveChangesAsync();
 
-            return Ok(appDevices);
+            return Ok(mac);
         }
 
-        private bool AppDevicesExists(int id)
+        private bool MacExists(int id)
         {
-            return _context.AppDevices.Any(e => e.DeviceId == id);
+            return _context.Mac.Any(e => e.MacId == id);
         }
     }
 }

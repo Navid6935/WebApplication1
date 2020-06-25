@@ -11,56 +11,56 @@ namespace WebApplication1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AppDevicesController : ControllerBase
+    public class OperatorsController : ControllerBase
     {
         private readonly Smart_Api_DBContext _context;
 
-        public AppDevicesController(Smart_Api_DBContext context)
+        public OperatorsController(Smart_Api_DBContext context)
         {
             _context = context;
         }
 
-        // GET: api/AppDevices
+        // GET: api/Operators
         [HttpGet]
-        public IEnumerable<AppDevices> GetAppDevices()
+        public IEnumerable<Operator> GetOperator()
         {
-            return _context.AppDevices;
+            return _context.Operator;
         }
 
-        // GET: api/AppDevices/5
+        // GET: api/Operators/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetAppDevices([FromRoute] int id)
+        public async Task<IActionResult> GetOperator([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var appDevices = await _context.AppDevices.FindAsync(id);
+            var @operator = await _context.Operator.FindAsync(id);
 
-            if (appDevices == null)
+            if (@operator == null)
             {
                 return NotFound();
             }
 
-            return Ok(appDevices);
+            return Ok(@operator);
         }
 
-        // PUT: api/AppDevices/5
+        // PUT: api/Operators/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAppDevices([FromRoute] int id, [FromBody] AppDevices appDevices)
+        public async Task<IActionResult> PutOperator([FromRoute] int id, [FromBody] Operator @operator)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != appDevices.DeviceId)
+            if (id != @operator.OperatorId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(appDevices).State = EntityState.Modified;
+            _context.Entry(@operator).State = EntityState.Modified;
 
             try
             {
@@ -68,7 +68,7 @@ namespace WebApplication1.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AppDevicesExists(id))
+                if (!OperatorExists(id))
                 {
                     return NotFound();
                 }
@@ -81,45 +81,45 @@ namespace WebApplication1.Controllers
             return NoContent();
         }
 
-        // POST: api/AppDevices
+        // POST: api/Operators
         [HttpPost]
-        public async Task<IActionResult> PostAppDevices([FromBody] AppDevices appDevices)
+        public async Task<IActionResult> PostOperator([FromBody] Operator @operator)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.AppDevices.Add(appDevices);
+            _context.Operator.Add(@operator);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetAppDevices", new { id = appDevices.DeviceId }, appDevices);
+            return CreatedAtAction("GetOperator", new { id = @operator.OperatorId }, @operator);
         }
 
-        // DELETE: api/AppDevices/5
+        // DELETE: api/Operators/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAppDevices([FromRoute] int id)
+        public async Task<IActionResult> DeleteOperator([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var appDevices = await _context.AppDevices.FindAsync(id);
-            if (appDevices == null)
+            var @operator = await _context.Operator.FindAsync(id);
+            if (@operator == null)
             {
                 return NotFound();
             }
 
-            _context.AppDevices.Remove(appDevices);
+            _context.Operator.Remove(@operator);
             await _context.SaveChangesAsync();
 
-            return Ok(appDevices);
+            return Ok(@operator);
         }
 
-        private bool AppDevicesExists(int id)
+        private bool OperatorExists(int id)
         {
-            return _context.AppDevices.Any(e => e.DeviceId == id);
+            return _context.Operator.Any(e => e.OperatorId == id);
         }
     }
 }

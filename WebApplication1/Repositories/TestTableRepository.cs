@@ -13,8 +13,10 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Repositories
 {
+
     public class TestTableRepository : ITestTable
     {
+
         private Smart_Api_DBContext _context;
         private IMemoryCache _cache;
         private readonly IDistributedCache _distributedCache;

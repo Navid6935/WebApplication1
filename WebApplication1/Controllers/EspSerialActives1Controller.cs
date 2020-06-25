@@ -11,56 +11,56 @@ namespace WebApplication1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AppDevicesController : ControllerBase
+    public class EspSerialActives1Controller : ControllerBase
     {
         private readonly Smart_Api_DBContext _context;
 
-        public AppDevicesController(Smart_Api_DBContext context)
+        public EspSerialActives1Controller(Smart_Api_DBContext context)
         {
             _context = context;
         }
 
-        // GET: api/AppDevices
+        // GET: api/EspSerialActives1
         [HttpGet]
-        public IEnumerable<AppDevices> GetAppDevices()
+        public IEnumerable<EspSerialActive> GetEspSerialActive()
         {
-            return _context.AppDevices;
+            return _context.EspSerialActive;
         }
 
-        // GET: api/AppDevices/5
+        // GET: api/EspSerialActives1/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetAppDevices([FromRoute] int id)
+        public async Task<IActionResult> GetEspSerialActive([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var appDevices = await _context.AppDevices.FindAsync(id);
+            var espSerialActive = await _context.EspSerialActive.FindAsync(id);
 
-            if (appDevices == null)
+            if (espSerialActive == null)
             {
                 return NotFound();
             }
 
-            return Ok(appDevices);
+            return Ok(espSerialActive);
         }
 
-        // PUT: api/AppDevices/5
+        // PUT: api/EspSerialActives1/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAppDevices([FromRoute] int id, [FromBody] AppDevices appDevices)
+        public async Task<IActionResult> PutEspSerialActive([FromRoute] int id, [FromBody] EspSerialActive espSerialActive)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != appDevices.DeviceId)
+            if (id != espSerialActive.EsId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(appDevices).State = EntityState.Modified;
+            _context.Entry(espSerialActive).State = EntityState.Modified;
 
             try
             {
@@ -68,7 +68,7 @@ namespace WebApplication1.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AppDevicesExists(id))
+                if (!EspSerialActiveExists(id))
                 {
                     return NotFound();
                 }
@@ -81,45 +81,45 @@ namespace WebApplication1.Controllers
             return NoContent();
         }
 
-        // POST: api/AppDevices
+        // POST: api/EspSerialActives1
         [HttpPost]
-        public async Task<IActionResult> PostAppDevices([FromBody] AppDevices appDevices)
+        public async Task<IActionResult> PostEspSerialActive([FromBody] EspSerialActive espSerialActive)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.AppDevices.Add(appDevices);
+            _context.EspSerialActive.Add(espSerialActive);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetAppDevices", new { id = appDevices.DeviceId }, appDevices);
+            return CreatedAtAction("GetEspSerialActive", new { id = espSerialActive.EsId }, espSerialActive);
         }
 
-        // DELETE: api/AppDevices/5
+        // DELETE: api/EspSerialActives1/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAppDevices([FromRoute] int id)
+        public async Task<IActionResult> DeleteEspSerialActive([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var appDevices = await _context.AppDevices.FindAsync(id);
-            if (appDevices == null)
+            var espSerialActive = await _context.EspSerialActive.FindAsync(id);
+            if (espSerialActive == null)
             {
                 return NotFound();
             }
 
-            _context.AppDevices.Remove(appDevices);
+            _context.EspSerialActive.Remove(espSerialActive);
             await _context.SaveChangesAsync();
 
-            return Ok(appDevices);
+            return Ok(espSerialActive);
         }
 
-        private bool AppDevicesExists(int id)
+        private bool EspSerialActiveExists(int id)
         {
-            return _context.AppDevices.Any(e => e.DeviceId == id);
+            return _context.EspSerialActive.Any(e => e.EsId == id);
         }
     }
 }

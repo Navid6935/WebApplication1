@@ -11,56 +11,56 @@ namespace WebApplication1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AppDevicesController : ControllerBase
+    public class StoredSerialsController : ControllerBase
     {
         private readonly Smart_Api_DBContext _context;
 
-        public AppDevicesController(Smart_Api_DBContext context)
+        public StoredSerialsController(Smart_Api_DBContext context)
         {
             _context = context;
         }
 
-        // GET: api/AppDevices
+        // GET: api/StoredSerials
         [HttpGet]
-        public IEnumerable<AppDevices> GetAppDevices()
+        public IEnumerable<StoredSerials> GetStoredSerials()
         {
-            return _context.AppDevices;
+            return _context.StoredSerials;
         }
 
-        // GET: api/AppDevices/5
+        // GET: api/StoredSerials/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetAppDevices([FromRoute] int id)
+        public async Task<IActionResult> GetStoredSerials([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var appDevices = await _context.AppDevices.FindAsync(id);
+            var storedSerials = await _context.StoredSerials.FindAsync(id);
 
-            if (appDevices == null)
+            if (storedSerials == null)
             {
                 return NotFound();
             }
 
-            return Ok(appDevices);
+            return Ok(storedSerials);
         }
 
-        // PUT: api/AppDevices/5
+        // PUT: api/StoredSerials/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAppDevices([FromRoute] int id, [FromBody] AppDevices appDevices)
+        public async Task<IActionResult> PutStoredSerials([FromRoute] int id, [FromBody] StoredSerials storedSerials)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != appDevices.DeviceId)
+            if (id != storedSerials.StoredSerialsId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(appDevices).State = EntityState.Modified;
+            _context.Entry(storedSerials).State = EntityState.Modified;
 
             try
             {
@@ -68,7 +68,7 @@ namespace WebApplication1.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AppDevicesExists(id))
+                if (!StoredSerialsExists(id))
                 {
                     return NotFound();
                 }
@@ -81,45 +81,45 @@ namespace WebApplication1.Controllers
             return NoContent();
         }
 
-        // POST: api/AppDevices
+        // POST: api/StoredSerials
         [HttpPost]
-        public async Task<IActionResult> PostAppDevices([FromBody] AppDevices appDevices)
+        public async Task<IActionResult> PostStoredSerials([FromBody] StoredSerials storedSerials)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.AppDevices.Add(appDevices);
+            _context.StoredSerials.Add(storedSerials);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetAppDevices", new { id = appDevices.DeviceId }, appDevices);
+            return CreatedAtAction("GetStoredSerials", new { id = storedSerials.StoredSerialsId }, storedSerials);
         }
 
-        // DELETE: api/AppDevices/5
+        // DELETE: api/StoredSerials/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAppDevices([FromRoute] int id)
+        public async Task<IActionResult> DeleteStoredSerials([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var appDevices = await _context.AppDevices.FindAsync(id);
-            if (appDevices == null)
+            var storedSerials = await _context.StoredSerials.FindAsync(id);
+            if (storedSerials == null)
             {
                 return NotFound();
             }
 
-            _context.AppDevices.Remove(appDevices);
+            _context.StoredSerials.Remove(storedSerials);
             await _context.SaveChangesAsync();
 
-            return Ok(appDevices);
+            return Ok(storedSerials);
         }
 
-        private bool AppDevicesExists(int id)
+        private bool StoredSerialsExists(int id)
         {
-            return _context.AppDevices.Any(e => e.DeviceId == id);
+            return _context.StoredSerials.Any(e => e.StoredSerialsId == id);
         }
     }
 }

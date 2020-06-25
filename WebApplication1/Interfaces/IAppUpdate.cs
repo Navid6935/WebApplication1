@@ -6,8 +6,9 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Interfaces
 {
-    interface IAppUpdate
-    {            IEnumerable<AppUpdate> GetAll();
+    public interface IAppUpdate
+    {            
+            IEnumerable<AppUpdate> GetAll();
             Task<AppUpdate> Add(AppUpdate appupdate);
             Task<AppUpdate> Find(int id);
             Task<AppUpdate> Update(AppUpdate appupdate);

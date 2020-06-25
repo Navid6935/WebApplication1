@@ -11,56 +11,56 @@ namespace WebApplication1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AppDevicesController : ControllerBase
+    public class CategoriesController : ControllerBase
     {
         private readonly Smart_Api_DBContext _context;
 
-        public AppDevicesController(Smart_Api_DBContext context)
+        public CategoriesController(Smart_Api_DBContext context)
         {
             _context = context;
         }
 
-        // GET: api/AppDevices
+        // GET: api/Categories
         [HttpGet]
-        public IEnumerable<AppDevices> GetAppDevices()
+        public IEnumerable<Category> GetCategory()
         {
-            return _context.AppDevices;
+            return _context.Category;
         }
 
-        // GET: api/AppDevices/5
+        // GET: api/Categories/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetAppDevices([FromRoute] int id)
+        public async Task<IActionResult> GetCategory([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var appDevices = await _context.AppDevices.FindAsync(id);
+            var category = await _context.Category.FindAsync(id);
 
-            if (appDevices == null)
+            if (category == null)
             {
                 return NotFound();
             }
 
-            return Ok(appDevices);
+            return Ok(category);
         }
 
-        // PUT: api/AppDevices/5
+        // PUT: api/Categories/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAppDevices([FromRoute] int id, [FromBody] AppDevices appDevices)
+        public async Task<IActionResult> PutCategory([FromRoute] int id, [FromBody] Category category)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != appDevices.DeviceId)
+            if (id != category.CatId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(appDevices).State = EntityState.Modified;
+            _context.Entry(category).State = EntityState.Modified;
 
             try
             {
@@ -68,7 +68,7 @@ namespace WebApplication1.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AppDevicesExists(id))
+                if (!CategoryExists(id))
                 {
                     return NotFound();
                 }
@@ -81,45 +81,45 @@ namespace WebApplication1.Controllers
             return NoContent();
         }
 
-        // POST: api/AppDevices
+        // POST: api/Categories
         [HttpPost]
-        public async Task<IActionResult> PostAppDevices([FromBody] AppDevices appDevices)
+        public async Task<IActionResult> PostCategory([FromBody] Category category)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.AppDevices.Add(appDevices);
+            _context.Category.Add(category);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetAppDevices", new { id = appDevices.DeviceId }, appDevices);
+            return CreatedAtAction("GetCategory", new { id = category.CatId }, category);
         }
 
-        // DELETE: api/AppDevices/5
+        // DELETE: api/Categories/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAppDevices([FromRoute] int id)
+        public async Task<IActionResult> DeleteCategory([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var appDevices = await _context.AppDevices.FindAsync(id);
-            if (appDevices == null)
+            var category = await _context.Category.FindAsync(id);
+            if (category == null)
             {
                 return NotFound();
             }
 
-            _context.AppDevices.Remove(appDevices);
+            _context.Category.Remove(category);
             await _context.SaveChangesAsync();
 
-            return Ok(appDevices);
+            return Ok(category);
         }
 
-        private bool AppDevicesExists(int id)
+        private bool CategoryExists(int id)
         {
-            return _context.AppDevices.Any(e => e.DeviceId == id);
+            return _context.Category.Any(e => e.CatId == id);
         }
     }
 }
