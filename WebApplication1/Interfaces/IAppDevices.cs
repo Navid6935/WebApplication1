@@ -6,7 +6,7 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Interfaces
 {
-    interface IAppDevices
+   public interface IAppDevices
     {
             IEnumerable<AppDevices> GetAll();
             Task<AppDevices> Add(AppDevices appdevice);

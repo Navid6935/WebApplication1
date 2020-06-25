@@ -15,27 +15,29 @@ namespace WebApplication1.Controllers
     [ApiController]
     public class AppUpdatesController : ControllerBase
     {
-        private IAppUpdate _appUpdateRepository;
+        private IAppUpdate _appUpdatesRipository;
 
 
         public AppUpdatesController(IAppUpdate appUpdateRepository)
         {
-            _appUpdateRepository = appUpdateRepository;
+            _appUpdatesRipository = appUpdateRepository;
 
         }
 
-        // GET: api/AppUpdates
+
+        // GET: api/AppUsers
         [HttpGet]
-        public IActionResult GetAppUpdate()
+        public IActionResult GetAppUsers()
         {
-            var result = new ObjectResult(_appUpdateRepository.GetAll())
+            var result = new ObjectResult(_appUpdatesRipository.GetAll())
             {
                 StatusCode = (int)HttpStatusCode.OK
             };
-            Request.HttpContext.Response.Headers.Add("X-Count", _appUpdateRepository.Count().ToString());
+            Request.HttpContext.Response.Headers.Add("X-Count", _appUpdatesRipository.Count().ToString());
 
             return result;
         }
+
         // GET: api/AppUpdates/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAppUpdate([FromRoute] int id)
@@ -47,7 +49,7 @@ namespace WebApplication1.Controllers
             if (await AppUpdateExists(id))
             {
 
-                var appupdate = await _appUpdateRepository.Find(id);
+                var appupdate = await _appUpdatesRipository.Find(id);
                 return Ok(appupdate);
             }
 
@@ -63,7 +65,7 @@ namespace WebApplication1.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAppUpdate([FromRoute] int id, [FromBody] AppUpdate appUpdate)
         {
-            await _appUpdateRepository.Update(appUpdate);
+            await _appUpdatesRipository.Update(appUpdate);
             return Ok(appUpdate);
         }
 
@@ -75,7 +77,7 @@ namespace WebApplication1.Controllers
             {
                 return BadRequest(ModelState);
             }
-            await _appUpdateRepository.Add(appUpdate);
+            await _appUpdatesRipository.Add(appUpdate);
             return CreatedAtAction("GetAppUpdate", new { id = appUpdate.AppUpdateId }, appUpdate);
         }
 
@@ -87,13 +89,13 @@ namespace WebApplication1.Controllers
             {
                 return BadRequest(ModelState);
             }
-            await _appUpdateRepository.Remove(id);
+            await _appUpdatesRipository.Remove(id);
             return Ok();
         }
 
         private async Task<bool> AppUpdateExists(int id)
         {
-            return await _appUpdateRepository.IsExists(id);
+            return await _appUpdatesRipository.IsExists(id);
         }
     }
 }

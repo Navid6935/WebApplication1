@@ -6,7 +6,7 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Interfaces
 {
-    interface IMac
+    public interface IMac
     {
         IEnumerable<Mac> GetAll();
         Task<Mac> Add(Mac mac);

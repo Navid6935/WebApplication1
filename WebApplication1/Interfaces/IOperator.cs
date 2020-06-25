@@ -6,7 +6,7 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Interfaces
 {
-    interface IOperator
+    public interface IOperator
     {
         IEnumerable<Operator> GetAll();
         Task<Operator> Add(Operator operaator);

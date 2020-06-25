@@ -6,7 +6,7 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Interfaces
 {
-    interface ISerial
+    public interface ISerial
     {
         IEnumerable<Serial> GetAll();
         Task<Serial> Add(Serial serial);

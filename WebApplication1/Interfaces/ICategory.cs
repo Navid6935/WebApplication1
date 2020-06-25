@@ -6,7 +6,7 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Interfaces
 {
-    interface ICategory
+    public interface ICategory
     {
         IEnumerable<Category> GetAll();
         Task<Category> Add(Category category);

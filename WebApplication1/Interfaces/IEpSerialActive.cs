@@ -6,7 +6,7 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Interfaces
 {
-    interface IEpSerialActive
+    public interface IEpSerialActive
     {
         IEnumerable<EspSerialActive> GetAll();
         Task<EspSerialActive> Add(EspSerialActive espSerialActive);
