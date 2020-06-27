@@ -10,9 +10,15 @@ namespace WebClient.Controllers
 {
     public class HomeController : Controller
     {
+        private AppDevices _appDevices;
+
+        public HomeController()
+        {
+                _appDevices=new AppDevices();
+        }
         public IActionResult Index()
         {
-            return View();
+            return View(_appDevices.GetAllAppDevice());
         }
 
         public IActionResult About()
