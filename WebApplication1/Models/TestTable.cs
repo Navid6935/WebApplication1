@@ -5,7 +5,7 @@ namespace WebApplication1.Models
 {
     public partial class TestTable
     {
-        public decimal Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
     }
 }

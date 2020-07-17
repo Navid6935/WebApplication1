@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{B6A28FC6-6E83-4E80-A1AB-1FEF3D3DC7EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{B6A28FC6-6E83-4E80-A1AB-1FEF3D3DC7EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebClient", "WebClient\WebClient.csproj", "{991384EE-EB90-4671-963C-45A74FD6ACA6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebClient", "WebClient\WebClient.csproj", "{991384EE-EB90-4671-963C-45A74FD6ACA6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebClient2", "WebClient2\WebClient2.csproj", "{191B6996-C723-4184-BA1F-9EC301917F2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{991384EE-EB90-4671-963C-45A74FD6ACA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{991384EE-EB90-4671-963C-45A74FD6ACA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{991384EE-EB90-4671-963C-45A74FD6ACA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{191B6996-C723-4184-BA1F-9EC301917F2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{191B6996-C723-4184-BA1F-9EC301917F2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{191B6996-C723-4184-BA1F-9EC301917F2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{191B6996-C723-4184-BA1F-9EC301917F2B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
