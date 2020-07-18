@@ -16,6 +16,7 @@ namespace WebClient2.Controllers
 
         public HomeController(ILogger<HomeController> logger)
         {
+            _testTable=new TestTableRepository();
             _logger = logger;
         }
 
